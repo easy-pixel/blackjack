@@ -1,4 +1,5 @@
-let cards = ["Ace",2,3,4,5,6,7,8,9,10,"Jack","Queen","King"] //possible cards
+const cards = ["Ace",2,3,4,5,6,7,8,9,10,"Jack","Queen","King"] //possible cards
+const suits = ['♥', '♦', '♠', '♣'];
 let firstCard = cards[Math.floor(Math.random() * cards.length)]; //selects random card from cards array
 let secondCard = cards[Math.floor(Math.random() * cards.length)]; //selects random card from cards array
 if (firstCard === secondCard && firstCard === "Ace"){
@@ -12,6 +13,8 @@ let inGame = false;
 let userMessage = document.getElementById("use-message");
 let userCards = document.getElementById("cards");
 let userCardSum = document.getElementById("sum");
+let startBtn = document.getElementById("start_btn")
+let click = button.addEventListener('click', renderGame)
 
 //render the game
 function renderGame() {
@@ -45,11 +48,18 @@ function renderGame() {
     } else if (sum === 21) {
         message = "You got blackjack!";
         blackJack = true;
+        startBtn.textContent = "New Game";
     } else {
         message = "You lose";
         inGame = false;
+        startBtn.textContent = "New Game";
     }
     userMessage.textContent = message; //display message
+
+    if (startBtn.textContent == "New Game" && click) {
+        playerCards = [firstCard, secondCard]
+        renderGame();
+    }
 }
 
 //draws a new card
